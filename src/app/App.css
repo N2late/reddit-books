@@ -27,3 +27,11 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
 }
+
+.title span {
+  color: #f67280;
+}
+
+.title {
+  color: #457b9d;
+}
