@@ -1,19 +1,19 @@
 import './App.css';
 import React from 'react';
-import Search from '../features/searchTerm/SearchTerm';
-import logo from '../img/logo2.png';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Hero from '../features/components/hero/Hero';
+import Search from '../features/components/searchTerm/SearchTerm';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="header-title">
-          <img className="App-logo" src={logo} alt="Reddit Books" />
-          <h1 className="title">Reddit Books</h1>
-        </div>
-        <Search />
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <Hero />
+          <Search />
+        </header>
+      </div>
+    </Router>
   );
 }
 

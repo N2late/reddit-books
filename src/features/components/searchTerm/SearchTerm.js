@@ -1,8 +1,8 @@
 import './search.css';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import clearSearchIcon from '../../img/searchIcons/cross-circle.svg';
-import searchIcon from '../../img/searchIcons/search.svg';
+import clearSearchIcon from '../../../img/searchIcons/cross-circle.svg';
+import searchIcon from '../../../img/searchIcons/search.svg';
 import {
   clearSearchTerm,
   selectSearch,
