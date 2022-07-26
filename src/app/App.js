@@ -1,7 +1,8 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Hero from '../features/components/hero/Hero';
+import { Home } from '../features/components/homepage/home';
 import Search from '../features/components/searchTerm/SearchTerm';
 
 function App() {
@@ -13,6 +14,9 @@ function App() {
           <Search />
         </header>
       </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </Router>
   );
 }
