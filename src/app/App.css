@@ -22,7 +22,6 @@
   display: flex;
   margin-top: 10px;
   min-height: 20px;
-
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
