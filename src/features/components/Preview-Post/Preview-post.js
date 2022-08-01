@@ -1,9 +1,17 @@
 import './preview-post.css';
-import React from 'react';
+import React, { useState } from 'react';
 import CommentsIcon from '../../../img/searchIcons/comment-bubble.svg';
+import { secondsToDhms } from '../../utils/utilis';
+import AllComments from '../comments/AllComments';
 
 export default function PreviewPost({ postPreview, children }) {
+  const [isShow, setIsShow] = useState(false);
   const postTime = secondsToDhms(postPreview.data.created_utc);
+
+  const displayCommentsHandler = () => {
+    setIsShow(!isShow);
+  };
+
   return (
     <div key={postPreview.data.name} className="post-preview" tabIndex={0}>
       <span className="preview-post-container">
@@ -17,7 +25,7 @@ export default function PreviewPost({ postPreview, children }) {
               <span className="username">{postPreview.data.author}</span> posted{' '}
               <span className="time">{postTime}</span> ago
             </p>
-            <h1 className="title">{postPreview.data.title}</h1>
+            <h1 className="post-title">{postPreview.data.title}</h1>
           </div>
           {postPreview.data.url_overridden_by_dest ? (
             <img
@@ -34,42 +42,16 @@ export default function PreviewPost({ postPreview, children }) {
               src={CommentsIcon}
               alt="comments"
               className="comments-icon"
-              //onClick={displayCommentsHandler}
+              onClick={displayCommentsHandler}
             />
             <p className="comment-number">{postPreview.data.num_comments}</p>
           </div>
         </div>
       </span>
+      {isShow ? (
+        <AllComments url={postPreview.data.url_overridden_by_dest} />
+      ) : null}
       {children}
     </div>
   );
-}
-
-function secondsToDhms(unix) {
-  const start = new Date(unix * 1000);
-  const seconds = (Date.now() - start) / 1000;
-
-  let y = Math.floor(seconds / (3600 * 24 * 365));
-  let d = Math.floor(seconds / (3600 * 24));
-  let h = Math.floor((seconds % (3600 * 24)) / 3600);
-  let m = Math.floor((seconds % 3600) / 60);
-  let s = Math.floor(seconds % 60);
-
-  if (y > 0) {
-    return y + (y == 1 ? ' year' : ' years');
-  }
-  if (d > 0) {
-    return d + (d == 1 ? ' day' : ' days');
-  }
-
-  if (h > 0) {
-    return h + (h == 1 ? ' hour' : ' hours');
-  }
-
-  if (m > 0) {
-    return m + (m == 1 ? ' minute' : ' minutes');
-  }
-  if (s > 0) {
-    return s + (s == 1 ? ' second' : ' seconds');
-  }
 }
