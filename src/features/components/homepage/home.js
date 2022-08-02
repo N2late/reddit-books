@@ -1,6 +1,6 @@
 import './home.css';
 import React from 'react';
-import PreviewPost from '../preview-Post/Preview-post';
+import PreviewPost from '../posts/Preview-post';
 
 export function Home() {
   const { hasError } = false;
