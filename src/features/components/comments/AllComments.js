@@ -14,12 +14,21 @@ const AllComments = ({ url }) => {
 
   const { comments } = useSelector((state) => state.allComments);
 
-  const { isLoading } = useSelector((state) => state.allComments);
+  const { isLoading, hasError } = useSelector((state) => state.allComments);
 
   if (isLoading) {
     return (
       <div className="spinner">
         <Spinner />
+      </div>
+    );
+  }
+
+  if (hasError) {
+    return (
+      <div className="error">
+        {' '}
+        <h2>Something went wrong!</h2>
       </div>
     );
   }
