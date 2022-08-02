@@ -5,13 +5,13 @@ import clearSearchIcon from '../../../img/searchIcons/cross-circle.svg';
 import searchIcon from '../../../img/searchIcons/search.svg';
 import {
   clearSearchTerm,
-  selectSearch,
+  selectSearchTerm,
   setSearchTerm,
 } from './searchTermSlice';
 
 const Search = () => {
   const dispatch = useDispatch();
-  const searchTerm = useSelector(selectSearch);
+  const searchTerm = useSelector(selectSearchTerm);
 
   const onSearchChangeHandler = (e) => {
     dispatch(setSearchTerm(e.target.value));

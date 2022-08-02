@@ -49,7 +49,9 @@ export default function PreviewPost({ postPreview, children }) {
         </div>
       </span>
       {isShow ? (
-        <AllComments url={postPreview.data.url_overridden_by_dest} />
+        <AllComments
+          url={'https://www.reddit.com/' + postPreview.data.permalink}
+        />
       ) : null}
       {children}
     </div>

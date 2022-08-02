@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Hero from '../features/components/hero/Hero';
-import { Home } from '../features/components/homepage/home';
+import Home from '../features/components/homepage/Home';
 import Search from '../features/components/searchTerm/SearchTerm';
 
 function App() {
