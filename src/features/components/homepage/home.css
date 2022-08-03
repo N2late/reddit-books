@@ -6,7 +6,7 @@
 
 .preview-posts-section {
   padding-top: 32px;
-  margin-left: 20px;
+  margin-left: 100px;
   width: 70%;
 }
 
@@ -31,4 +31,10 @@
 
 .preview-communities-section {
   padding-top: 32px;
+}
+
+.communities-container {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px;
+  padding: 10px 20px 20px 20px;
 }
