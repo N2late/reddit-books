@@ -1,7 +1,7 @@
 import './preview-post.css';
 import React, { useState } from 'react';
 import CommentsIcon from '../../../img/searchIcons/comment-bubble.svg';
-import { secondsToDhms } from '../../utils/utilis';
+import { secondsToDhms, textWithParagraphs } from '../../utils/utilis';
 import AllComments from '../comments/AllComments';
 
 export default function PreviewPost({ postPreview, children }) {
@@ -35,7 +35,9 @@ export default function PreviewPost({ postPreview, children }) {
             />
           ) : null}
           {postPreview.data.selftext ? (
-            <p className="description">{postPreview.data.selftext}</p>
+            <p className="description">
+              {textWithParagraphs(postPreview.data.selftext)}
+            </p>
           ) : null}
           <div className="comments">
             <img
