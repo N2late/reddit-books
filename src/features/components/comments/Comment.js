@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { linkify, secondsToDhms, textWithParagraphs } from '../../utils/utilis';
 
-export default function Comment({ comment, children }) {
+export default function Comment({ comment }) {
   const postTime = secondsToDhms(comment.created_utc);
   const { hasError } = useSelector((state) => state.allComments);
 

@@ -29,7 +29,7 @@ const Search = () => {
         type="text"
         value={searchTerm}
         onChange={onSearchChangeHandler}
-        placeholder="What do you want to know? :)"
+        placeholder="book, author..."
       />
       {searchTerm.length > 0 && (
         <button

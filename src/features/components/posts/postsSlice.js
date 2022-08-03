@@ -10,6 +10,15 @@ export const loadPosts = createAsyncThunk(
   },
 );
 
+export const loadCommunityPosts = createAsyncThunk(
+  'allCommunityPosts/getCommunityPosts',
+  async (url) => {
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.data.children;
+  },
+);
+
 const sliceOptions = {
   name: 'allPosts',
   initialState: {
@@ -29,6 +38,19 @@ const sliceOptions = {
       state.hasError = false;
     },
     [loadPosts.rejected]: (state) => {
+      state.isLoading = false;
+      state.hasError = true;
+    },
+    [loadCommunityPosts.pending]: (state) => {
+      state.isLoading = true;
+      state.hasError = false;
+    },
+    [loadCommunityPosts.fulfilled]: (state, action) => {
+      state.posts = action.payload;
+      state.isLoading = false;
+      state.hasError = false;
+    },
+    [loadCommunityPosts.rejected]: (state) => {
       state.isLoading = false;
       state.hasError = true;
     },
