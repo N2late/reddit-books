@@ -1,6 +1,7 @@
 #search-container {
   flex-direction: column;
-  padding: 33px 36px 0px 36px;
+  padding: 5px 36px 0px 36px;
+  margin-bottom: 10px;
 }
 
 #search {

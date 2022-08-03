@@ -1,6 +1,9 @@
 import './home.css';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import GoTopButton from '../buttonGoTop/GoTopButton';
+import Community from '../communities/Community';
+import { communities } from '../communities/data/communitiesData';
 import { loadPosts, selectPosts } from '../posts/postsSlice';
 import PreviewPost from '../posts/Preview-post';
 import { selectSearchTerm } from '../searchTerm/searchTermSlice';
@@ -25,12 +28,21 @@ const Home = () => {
         </div>
       ) : (
         <>
-          <section className="preview-posts-section">
-            <h2 className="header">posts</h2>
-            {data.map((post) => (
-              <PreviewPost postPreview={post} key={post.data.id} />
-            ))}
-          </section>
+          <div className="main-content-container">
+            <section className="preview-posts-section">
+              <h2 className="header">posts</h2>
+              {data.map((post) => (
+                <PreviewPost postPreview={post} key={post.data.id} />
+              ))}
+            </section>
+            <section className="preview-communities-section">
+              <h2 className="header">communities</h2>
+              {communities.map((community) => (
+                <Community community={community} key={community.id} />
+              ))}
+            </section>
+          </div>
+          <GoTopButton />
         </>
       )}
     </main>

@@ -24,15 +24,6 @@ const AllComments = ({ url }) => {
     );
   }
 
-  if (hasError) {
-    return (
-      <div className="error">
-        {' '}
-        <h2>Something went wrong!</h2>
-      </div>
-    );
-  }
-
   return (
     <div className="comments-container">
       {comments.map((comment) => (
