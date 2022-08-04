@@ -20,12 +20,21 @@ const Home = () => {
 
   const data = useSelector(selectPosts);
 
+  const tryAgainHandler = () => {
+    dispatch(loadPosts(searchTerm));
+  };
+
   return (
     <main id="posts-wrapper">
       {hasError ? (
         <div id="error-wrapper">
-          <h1> Reddit is having lunch. Please try again! :)</h1>
-          <button>Try again</button>
+          <h1 className="error-message">
+            {' '}
+            Reddit is having lunch. Please try again! :)
+          </h1>
+          <button className="try-again-button" onClick={tryAgainHandler}>
+            Try again
+          </button>
         </div>
       ) : (
         <>
