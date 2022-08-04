@@ -38,3 +38,36 @@
   border-radius: 10px;
   padding: 10px 20px 20px 20px;
 }
+
+.error-wrapper {
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.error-message {
+  color: #355c7d;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.try-again-button {
+  display: block;
+  border: none;
+  background: #355c7d;
+  box-shadow: 2px 2px 5px #457b9d;
+  width: 100px;
+  height: 75px;
+  border-radius: 20px;
+  bottom: 5%;
+  margin: 0 auto;
+  cursor: pointer;
+  text-align: center;
+  line-height: 30px;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: white;
+}
+
+.try-again-button:hover {
+  transform: scale(1.1);
+}
