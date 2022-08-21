@@ -62,6 +62,7 @@ const HomeMobile = () => {
                   margin: '0 auto',
                   marginRight: '0.5rem',
                   fontSize: '1.3rem',
+                  cursor: 'pointer',
                 }}
               >
                 Posts
@@ -74,6 +75,7 @@ const HomeMobile = () => {
                   margin: '0 auto',
                   marginLeft: '0.5rem',
                   fontSize: '1.3rem',
+                  cursor: 'pointer',
                 }}
               >
                 Communities
