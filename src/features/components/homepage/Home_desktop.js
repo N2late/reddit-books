@@ -9,7 +9,7 @@ import { loadPosts, selectPosts } from '../posts/postsSlice';
 import PreviewPost from '../posts/Preview-post';
 import { selectSearchTerm } from '../searchTerm/searchTermSlice';
 
-const Home = () => {
+const HomeDesktop = () => {
   const dispatch = useDispatch();
   const searchTerm = useSelector(selectSearchTerm);
   const { hasError, isLoading } = useSelector((state) => state.allPosts);
@@ -67,4 +67,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeDesktop;

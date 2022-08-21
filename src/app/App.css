@@ -35,3 +35,12 @@
 .title {
   color: #457b9d;
 }
+
+@media only screen and (max-width: 786px) {
+  .App-header {
+    padding-right: 0.5rem;
+  }
+  .App-logo {
+    height: 7rem;
+  }
+}

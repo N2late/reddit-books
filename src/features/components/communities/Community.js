@@ -3,12 +3,13 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { loadCommunityPosts } from '../posts/postsSlice';
 
-const Community = ({ community }) => {
+const Community = ({ community, setDisplay }) => {
   const dispatch = useDispatch();
 
   const loadCommunityPostsHandler = (url) => {
     url = community.url;
     dispatch(loadCommunityPosts(url));
+    setDisplay(true);
   };
 
   return (

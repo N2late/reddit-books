@@ -1,23 +1,36 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 import Hero from '../features/components/hero/Hero';
-import Home from '../features/components/homepage/Home';
+import HomeDesktop from '../features/components/homepage/Home_desktop';
+import HomeMobile from '../features/components/homepage/Home_mobile';
 import Search from '../features/components/searchTerm/SearchTerm';
 
 function App() {
+  const handleMediaQueryChange = (matches) => (matches ? isDesktop : isMobile);
+  const isDesktop = useMediaQuery({
+    query: '(min-width: 787px)',
+    undefined,
+    handleMediaQueryChange,
+  });
+
+  const isMobile = useMediaQuery({
+    query: '(max-width: 786px)',
+    undefined,
+    handleMediaQueryChange,
+  });
+
   return (
-    <Router>
+    <>
       <div className="App">
         <header className="App-header">
           <Hero />
           <Search />
         </header>
       </div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </Router>
+      {isDesktop && <HomeDesktop />}
+      {isMobile && <HomeMobile />}
+    </>
   );
 }
 

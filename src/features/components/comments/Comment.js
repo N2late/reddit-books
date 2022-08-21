@@ -20,8 +20,8 @@ export default function Comment({ comment }) {
       <span className="comment-container">
         <div className="comment-details">
           <div className="user">
-            <span className="username">{comment.author}</span> comment{' '}
-            <span className="time">{postTime}</span> ago
+            <span className="username">{comment.author}</span>{' '}
+            <span className="time-comment">comment {postTime} ago</span>
             <div className="vote-container">
               <span className="text2">Votes</span>
               <span className="text3">{comment.ups}</span>
