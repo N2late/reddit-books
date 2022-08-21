@@ -22,8 +22,8 @@ export default function PreviewPost({ postPreview, children }) {
         <div className="details-container">
           <div className="user-title-container">
             <p className="user">
-              <span className="username">{postPreview.data.author}</span> posted{' '}
-              <span className="time">{postTime}</span> ago
+              <span className="username">{postPreview.data.author}</span>
+              <span className="time"> posted {postTime} ago</span>
             </p>
             <h1 className="post-title">{postPreview.data.title}</h1>
           </div>

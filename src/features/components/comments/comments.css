@@ -41,6 +41,7 @@
   font-weight: 500;
   color: #56575b;
   line-height: 1.5;
+  overflow-wrap: break-word;
 }
 
 .text2 {
@@ -60,4 +61,16 @@
   display: flex;
   justify-content: center;
   margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 786px) {
+  .text1 {
+    font-size: 0.75rem;
+  }
+  span .username {
+    display: block;
+  }
+  .time-comment {
+    margin-left: 5px;
+  }
 }
