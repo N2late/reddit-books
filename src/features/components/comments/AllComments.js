@@ -26,9 +26,11 @@ const AllComments = ({ url }) => {
 
   return (
     <div className="comments-container">
-      {comments.map((comment) => (
-        <Comment comment={comment.data} key={comment.data.id} />
-      ))}
+      {comments.map((comment) => {
+        while (typeof comment.data.body === 'string') {
+          return <Comment comment={comment.data} key={comment.data.id} />;
+        }
+      })}
     </div>
   );
 };

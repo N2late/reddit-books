@@ -27,20 +27,20 @@ export function secondsToDhms(unix) {
   }
 }
 
-export const textWithParagraphs = (text) =>
+/*export const textWithParagraphs = (text) =>
   text
     .split('\n')
     .map((paragraph) => (
       <p className="text1">
         {paragraph.split('\n').reduce((total, line) => [total, <br />, line])}
       </p>
-    ));
+    ));*/
 
-export const linkify = (str) => {
+/*export const linkify = (str) => {
   var newStr = str.replace(
     /((http(s)?(:\/\/))?(www\.)?([a-zA-Z0-9-_./])*(\.[a-zA-Z]{2,3}\/?))([a-zA-Z0-9-_/?=&#])*(?!.*a>|('|"))/g,
     '<a href="$1"> $1 </a>',
   );
   console.log(newStr);
   return newStr;
-};
+};*/
