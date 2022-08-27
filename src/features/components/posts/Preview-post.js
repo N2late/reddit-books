@@ -1,12 +1,16 @@
 import './preview-post.css';
+import MarkdownIt from 'markdown-it';
 import React, { useState } from 'react';
+import ReactHtmlParser from 'react-html-parser';
 import CommentsIcon from '../../../img/searchIcons/comment-bubble.svg';
-import { secondsToDhms, textWithParagraphs } from '../../utils/utilis';
+import { secondsToDhms } from '../../utils/utilis';
 import AllComments from '../comments/AllComments';
 
 export default function PreviewPost({ postPreview, children }) {
   const [isShow, setIsShow] = useState(false);
   const postTime = secondsToDhms(postPreview.data.created_utc);
+  const md = new MarkdownIt();
+  const htmlPostText = md.render(postPreview.data.selftext);
 
   const displayCommentsHandler = () => {
     setIsShow(!isShow);
@@ -35,9 +39,7 @@ export default function PreviewPost({ postPreview, children }) {
             />
           ) : null}
           {postPreview.data.selftext ? (
-            <p className="description">
-              {textWithParagraphs(postPreview.data.selftext)}
-            </p>
+            <p className="description">{ReactHtmlParser(htmlPostText)}</p>
           ) : null}
           <div className="comments">
             <img
