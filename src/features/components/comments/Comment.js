@@ -28,7 +28,7 @@ export default function Comment({ comment }) {
             </div>
           </div>
         </div>
-        {textWithParagraphs(comment.body)}
+        {textWithParagraphs(comment.body_html)}
       </span>
     </div>
   );

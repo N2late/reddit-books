@@ -27,6 +27,7 @@ export function secondsToDhms(unix) {
   }
 }
 
+//creates break lines in the string received from API based on the presence of \n
 export const textWithParagraphs = (text) =>
   text
     .split('\n')
