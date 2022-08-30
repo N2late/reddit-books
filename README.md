@@ -13,7 +13,6 @@ Front-End React/Redux Application that connects to the Reddit API (json) to prov
 * [Code Examples](#code-examples)
 * [Project Requirements](#project-requirements)
 * [Future work](#future-work)
-* [Contact](#contact)
 
 ## Project Description
 
