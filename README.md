@@ -1,46 +1,197 @@
-# Getting Started with Create React App and Redux
+# Reddit Books app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+## About
 
-## Available Scripts
+Front-End React/Redux Application that connects to the Reddit API (json) to provide the 'best' posts about books.
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+* [Project Description](#project-description)
+* [Screenshots](#screenshots)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Code Examples](#code-examples)
+* [Project Requirements](#project-requirements)
+* [Future work](#future-work)
+* [Contact](#contact)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Project Description
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+A simple Reddit client for browsing posts and selected subreddit categories about books. This project was created as an assignment of Codecademy's Full Stack Engineer Path.
 
-### `npm test`
+## Screenshots
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Desktop
+![Example screenshot for desktop](src/img/screenshot_desktop.png)
 
-### `npm run build`
+### Mobile
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![mobile](https://github.com/N2late/reddit-books/blob/46fb746c497e29a16ac201478e8980f7f97351fd/src/img/mobile_screenshot.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Technologies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* HTML & CSS
+* JavaScript
+* React
+* Redux (React & Toolkit)
+* React Testing Library
+* Jest
 
-### `npm run eject`
+## Setup
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Please use npm install & npm start to run the application in your local environmnet.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Code Examples
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Example of a Slice with API call:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```javascript
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-## Learn More
+export const loadPosts = createAsyncThunk(
+  'allPosts/getPosts',
+  async (searchTerm) => {
+    let url = urlToFetch(searchTerm);
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.data.children;
+  },
+);
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+export const loadCommunityPosts = createAsyncThunk(
+  'allCommunityPosts/getCommunityPosts',
+  async (url) => {
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.data.children;
+  },
+);
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+const sliceOptions = {
+  name: 'allPosts',
+  initialState: {
+    posts: [],
+    isLoading: false,
+    hasError: false,
+  },
+  reducers: {},
+  extraReducers: {
+    [loadPosts.pending]: (state) => {
+      state.isLoading = true;
+      state.hasError = false;
+    },
+    [loadPosts.fulfilled]: (state, action) => {
+      state.posts = action.payload;
+      state.isLoading = false;
+      state.hasError = false;
+    },
+    [loadPosts.rejected]: (state) => {
+      state.isLoading = false;
+      state.hasError = true;
+    },
+    [loadCommunityPosts.pending]: (state) => {
+      state.isLoading = true;
+      state.hasError = false;
+    },
+    [loadCommunityPosts.fulfilled]: (state, action) => {
+      state.posts = action.payload;
+      state.isLoading = false;
+      state.hasError = false;
+    },
+    [loadCommunityPosts.rejected]: (state) => {
+      state.isLoading = false;
+      state.hasError = true;
+    },
+  },
+};
+
+export const allPostsSlice = createSlice(sliceOptions);
+export const selectPosts = (state) => state.allPosts.posts;
+export default allPostsSlice.reducer;
+```
+
+Example of a Component:
+
+```javascript
+const HomeDesktop = () => {
+  const dispatch = useDispatch();
+  const searchTerm = useSelector(selectSearchTerm);
+  const { hasError, isLoading } = useSelector((state) => state.allPosts);
+
+  useEffect(() => {
+    dispatch(loadPosts(searchTerm));
+  }, [dispatch, searchTerm]);
+
+  const data = useSelector(selectPosts);
+
+  const tryAgainHandler = () => {
+    dispatch(loadPosts(searchTerm));
+  };
+
+  return (
+    <main id="posts-wrapper">
+      {hasError ? (
+        <div id="error-wrapper">
+          <h1 className="error-message">
+            {' '}
+            Reddit is having lunch. Please try again! :)
+          </h1>
+          <button className="try-again-button" onClick={tryAgainHandler}>
+            Try again
+          </button>
+        </div>
+      ) : (
+        <>
+          <div className="main-content-container">
+            <section className="preview-posts-section">
+              <h2 className="header">Posts</h2>
+              {isLoading ? (
+                <div className="spinner">
+                  <Spinner />
+                </div>
+              ) : (
+                data.map((post) => (
+                  <PreviewPost postPreview={post} key={post.data.id} />
+                ))
+              )}
+            </section>
+            <section className="preview-communities-section">
+              <h2 className="header">Communities</h2>
+              <div className="communities-container">
+                {communities.map((community) => (
+                  <Community community={community} key={community.id} />
+                ))}
+              </div>
+            </section>
+          </div>
+          <GoTopButton />
+        </>
+      )}
+    </main>
+  );
+};
+
+export default HomeDesktop;
+```
+
+## Project Requirements
+
+- [x] Build the application using React and Redux
+- [x] Version control your application with Git and host the repository on GitHub
+- [x] Write unit tests for your components using Jest
+- [x] Users can use the application on any device (desktop to mobile)
+- [x] Users can use the application on any modern browser
+- [x] Users see an initial view of the data when first visiting the app
+- [x] Users can search the data using terms
+- [x] Users can filter the data based on categories that are predefined
+- [x] Users are delighted with a cohesive design system
+- [x] Users are able to leave an error state
+- [x] Users are shown a detail view (modal or new page/route) when they select an item
+- [x] Get 90+ scores on Lighthouse (97)
+- [x] Set up a CI/CD workflow to automatically deploy your application when the main branch in the repository changes
+
+## Future work:
+- [ ] Save posts
+- [ ] Filter by 'Hot', 'Best', 'New', 'Top', 'Rising'
+- [ ] Write end-to-end tests
+- [ ] Make the application a progressive web app
