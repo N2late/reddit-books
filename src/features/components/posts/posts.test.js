@@ -88,8 +88,8 @@ describe('loadPosts', () => {
       </Provider>,
     );
 
-    expect(screen.getByText('votes')).toBeInTheDocument();
+    expect(screen.getByText('Votes')).toBeInTheDocument();
     expect(screen.getByText('Richard')).toBeInTheDocument();
-    expect(screen.getByText('posted')).toBeInTheDocument();
+    expect(screen.getByText(/posted/i)).toBeInTheDocument();
   });
 });

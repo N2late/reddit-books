@@ -18,7 +18,7 @@ const AllComments = ({ url }) => {
 
   if (isLoading) {
     return (
-      <div className="spinner">
+      <div className="spinner" label="loading">
         <Spinner />
       </div>
     );
@@ -36,3 +36,4 @@ const AllComments = ({ url }) => {
 };
 
 export default AllComments;
+export { Comment };
