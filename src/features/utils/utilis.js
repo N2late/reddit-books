@@ -35,7 +35,10 @@ export function secondsToDhms(unix) {
       <p className="text1">
         {paragraph.split('\n').reduce((total, line) => [total, <br />, line])}
       </p>
+<<<<<<< HEAD
     ));/*
+=======
+    ));*/
 
 /*export const linkify = (str) => {
   var newStr = str.replace(

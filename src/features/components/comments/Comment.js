@@ -1,12 +1,15 @@
 import './comments.css';
+import MarkdownIt from 'markdown-it';
 import React from 'react';
+import ReactHtmlParser from 'react-html-parser';
 import { useSelector } from 'react-redux';
-import { linkify, secondsToDhms, textWithParagraphs } from '../../utils/utilis';
+import { secondsToDhms } from '../../utils/utilis';
 
 export default function Comment({ comment }) {
   const postTime = secondsToDhms(comment.created_utc);
   const { hasError } = useSelector((state) => state.allComments);
-
+  const md = new MarkdownIt();
+  const htmlComment = md.render(comment.body);
   if (hasError) {
     return (
       <div className="error">
@@ -28,7 +31,7 @@ export default function Comment({ comment }) {
             </div>
           </div>
         </div>
-        {textWithParagraphs(comment.body_html)}
+        <div className="text1">{ReactHtmlParser(htmlComment)}</div>
       </span>
     </div>
   );
