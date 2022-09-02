@@ -4,6 +4,17 @@ import { Provider } from 'react-redux';
 import App, { Hero, HomeDesktop, HomeMobile, Search } from './App';
 import { store } from './store';
 
+describe('App', () => {
+  test('App renders reddit', () => {
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+    );
+    expect(screen.getByText(/reddit/i)).toBeInTheDocument();
+  });
+});
+
 describe('Hero', () => {
   test('renders reddit and books words', () => {
     render(

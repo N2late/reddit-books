@@ -1,4 +1,4 @@
-import { secondsToDhms, textWithParagraphs } from './utilis';
+import { secondsToDhms } from './utilis';
 
 describe('Calculate the time passed since a given moment to present time in Years or Days or Hours or Minutes or Seconds', () => {
   test('It should return years passed if the time passed is => 1 year', () => {
@@ -35,18 +35,4 @@ describe('Calculate the time passed since a given moment to present time in Year
 
     expect(secondsToDhms(unixInput)).toEqual(output);
   });
-});
-
-describe('Make a line break every time the string passed has \n', () => {
-  const input =
-    'This line should break\n' +
-    'and continue in a new line.\n' +
-    'Does it work?';
-  const output = [
-    <p className="text1">This line should break</p>,
-    <p className="text1">and continue in a new line.</p>,
-    <p className="text1">Does it work?</p>,
-  ];
-
-  expect(textWithParagraphs(input)).toEqual(output);
 });

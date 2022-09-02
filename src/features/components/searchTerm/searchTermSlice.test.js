@@ -1,4 +1,3 @@
-import React from 'react';
 import searchReducer from './searchTermSlice';
 
 describe('searchReducer', () => {

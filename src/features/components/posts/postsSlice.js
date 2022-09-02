@@ -20,7 +20,7 @@ export const loadCommunityPosts = createAsyncThunk(
 );
 
 const sliceOptions = {
-  name: 'allPosts',
+  name: 'allPosts', //should split the community and posts reducer or give it a dif name?
   initialState: {
     posts: [],
     isLoading: false,
