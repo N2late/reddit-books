@@ -177,7 +177,7 @@ export default HomeDesktop;
 
 - [x] Build the application using React and Redux
 - [x] Version control your application with Git and host the repository on GitHub
-- [x] Write unit tests for your components using Jest
+- [x] Write unit tests for your components using Jest (coverage = ~70%)
 - [x] Users can use the application on any device (desktop to mobile)
 - [x] Users can use the application on any modern browser
 - [x] Users see an initial view of the data when first visiting the app
@@ -193,4 +193,5 @@ export default HomeDesktop;
 - [ ] Save posts
 - [ ] Filter by 'Hot', 'Best', 'New', 'Top', 'Rising'
 - [ ] Write end-to-end tests
+- [ ] Improve Unit Testing coverage
 - [ ] Make the application a progressive web app
