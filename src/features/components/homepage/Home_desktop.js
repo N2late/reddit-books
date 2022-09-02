@@ -68,3 +68,4 @@ const HomeDesktop = () => {
 };
 
 export default HomeDesktop;
+export { PreviewPost };

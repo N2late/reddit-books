@@ -35,3 +35,5 @@ function App() {
 }
 
 export default App;
+
+export { Hero, HomeDesktop, HomeMobile, Search };

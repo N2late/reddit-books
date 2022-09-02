@@ -27,6 +27,7 @@ export function secondsToDhms(unix) {
   }
 }
 
+//creates break lines in the string received from API based on the presence of \n
 /*export const textWithParagraphs = (text) =>
   text
     .split('\n')
@@ -34,6 +35,9 @@ export function secondsToDhms(unix) {
       <p className="text1">
         {paragraph.split('\n').reduce((total, line) => [total, <br />, line])}
       </p>
+<<<<<<< HEAD
+    ));/*
+=======
     ));*/
 
 /*export const linkify = (str) => {
